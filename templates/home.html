@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Investment Strategies & AI Labs México</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+  
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <h1>Bienvenido a Investment Strategies & AI Labs México!</h1>
+
+        <!-- Tabla HTML -->
+        <table border="1">
+            <thead>
+               <caption>Reporte Financiero recopilado al {{fecha_actual}}.</caption>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Ciudad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in datos_tabla %}
+                    <tr>
+                        <td>{{ fila.nombre }}</td>
+                        <td>{{ fila.edad }}</td>
+                        <td>{{ fila.ciudad }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+            
+        </table>
+
+
+        <div class="mensaje-adicional">
+                Fuente: Yahoo Finance en colaboración con GBM.
+        </div>
+
+
+        <!-- Otro contenido de tu aplicación aquí -->
+    </div>
+
+ <div class="login">
+
+     <!-- Form to enter new data for predictions  -->
+    <form action="{{ url_for('predict')}}"method="POST">
+      <input type="text" name="age" placeholder="Age" required="required" /><br>
+    	<input type="text" name="sex" placeholder="Sex" required="required" /><br>
+        <input type="text" name="bmi" placeholder="BMI" required="required" /><br>
+        <input type="text" name="children" placeholder="Children" required="required" /><br>
+        <input type="text" name="smoker" placeholder="Smoker" required="required" /><br>
+        <input type="text" name="region" placeholder="Region" required="required" /><br>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+  
+   
+ </div>
+ {{pred}}
+
+</body>
+</html>
