@@ -32,52 +32,71 @@ body {
 }
 	
 
-table {
-	position: absolute;
-	top: 25%;
-	left: 50%;
-    transform: translate(-50%, -50%);	width:600px;
-    width: 600px;
-	height:200px;
+.tabla1 {
+   	position: absolute;
+   	top: 20%;
+   	left: 50%;
+    transform: translate(-50%, -50%);
+    border-collapse: collapse;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 20px; /* Ajusta la separación entre las tablas */
+}
+
+.tabla2 {
+   	position: absolute;
+   	top: 33%;
+   	left: 50%;
+    transform: translate(-50%, -50%);	
+    border-collapse: collapse;
+    width: 40%;
+    margin: auto;
+    margin-top: 20px; /* Ajusta la separación entre las tablas */
+    /* Otros estilos de tabla si es necesario */
 }
 
 .mensaje-adicional {
 	position: absolute;
-	top: 40%;
+	top: 43%;
 	left: 50%;
     transform: translate(-50%, -50%);	width:600px;
-    font-size: 12px;
+    font-size: 15px;
     font-style: italic;
     margin-top: 5px; /* Ajusta el espacio entre la tabla y el mensaje */
 }
 
 caption {
-    font-size: 22px; /* Ajusta el tamaño de la letra según tus preferencias */
+    font-size: 20px; /* Ajusta el tamaño de la letra según tus preferencias */
     font-style: italic;
+    font-weight: bold; 
 }
 
 	
 .login { 
 	position: absolute;
-	top: 70%;
+	top: 75%;
 	left: 50%;
-	margin: -150px 0 0 -150px;
+	width:400px;
+    transform: translate(-50%, -50%);	
 	width:400px;
 	height:400px;
+	font-size: 17px;
 }
 
-.login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+.login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; font-size: 17px; }
 
 
-
-input { 
-	width: 100%; 
-	margin-bottom: 10px; 
+.resultado-cuadro { 
+	position: absolute;
+	top: 65%;
+	left: 50%;
+	width:600px;
+    transform: translate(-50%, -50%);	
 	background: rgba(0,0,0,0.3);
 	border: none;
 	outline: none;
 	padding: 10px;
-	font-size: 13px;
+	font-size: 16px;
 	color: #fff;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.3);
@@ -87,6 +106,8 @@ input {
 	-moz-transition: box-shadow .5s ease;
 	-o-transition: box-shadow .5s ease;
 	-ms-transition: box-shadow .5s ease;
-	transition: box-shadow .5s ease;
-}
-input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+	transition: box-shadow .5s ease;	
+	}
+
+
+

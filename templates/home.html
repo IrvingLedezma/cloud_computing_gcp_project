@@ -13,27 +13,29 @@
 
 <body>
 
-
-
     <div class="container">
         <h1>Bienvenido a Investment Strategies & AI Labs México!</h1>
 
         <!-- Tabla HTML -->
-        <table border="1">
+        <table class="tabla1" border="1">
             <thead>
-               <caption>Reporte Financiero recopilado al {{fecha_actual}}.</caption>
+               <caption>Reporte Financiero para Walmart MX de los últimos 30 días recopilado al {{fecha_actual}}.</caption>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Edad</th>
-                    <th>Ciudad</th>
+                    <th>Parámetro</th>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Close</th>
+                    <th>Volume</th>
                 </tr>
             </thead>
             <tbody>
                 {% for fila in datos_tabla %}
                     <tr>
-                        <td>{{ fila.nombre }}</td>
-                        <td>{{ fila.edad }}</td>
-                        <td>{{ fila.ciudad }}</td>
+                        <td>{{ fila.Parametro }}</td>
+                        <td>{{ fila.Open }}</td>
+                        <td>{{ fila.High }}</td>
+                        <td>{{ fila.Close }}</td>
+                        <td>{{ fila.Volume }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -41,10 +43,35 @@
             
         </table>
 
-
         <div class="mensaje-adicional">
                 Fuente: Yahoo Finance en colaboración con GBM.
         </div>
+
+
+        <table class="tabla2" border="1">
+            <thead>
+               <caption>Detalles del modelo entrenado LR (19-11-2023).</caption>
+                <tr>
+                    <th>Métrica de desempeño</th>
+                    <th>Muestra Train</th>
+                    <th>Muestra Test</th>
+                    <th>Muestra Test + Act</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in datos_tabla_2 %}
+                    <tr>
+                        <td>{{ fila.Metrica }}</td>
+                        <td>{{ fila.train }}</td>
+                        <td>{{ fila.test }}</td>
+                        <td>{{ fila.test_act }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+            
+        </table>
+
 
 
         <!-- Otro contenido de tu aplicación aquí -->
@@ -54,14 +81,7 @@
 
      <!-- Form to enter new data for predictions  -->
     <form action="{{ url_for('predict')}}"method="POST">
-      <input type="text" name="age" placeholder="Age" required="required" /><br>
-    	<input type="text" name="sex" placeholder="Sex" required="required" /><br>
-        <input type="text" name="bmi" placeholder="BMI" required="required" /><br>
-        <input type="text" name="children" placeholder="Children" required="required" /><br>
-        <input type="text" name="smoker" placeholder="Smoker" required="required" /><br>
-        <input type="text" name="region" placeholder="Region" required="required" /><br>
-
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Cálcular predicción</button>
     </form>
 
    <br>
@@ -69,7 +89,12 @@
   
    
  </div>
- {{pred}}
+
+
+<div class="resultado-cuadro">
+    {{ pred }}
+</div>
+
 
 </body>
 </html>
