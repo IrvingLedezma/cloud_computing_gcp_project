@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.9
 
 RUN pip install virtualenv
 ENV VIRTUAL_ENV=/venv
@@ -7,6 +7,9 @@ ENV PATH="VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /app
 ADD . /app
+
+# Update
+RUN pip install -r requirements.txt
 
 # Install dependencies
 RUN pip install -r requirements.txt
