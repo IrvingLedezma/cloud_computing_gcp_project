@@ -1,0 +1,1 @@
+docker build -t gcr.io/${PROJECT_ID}/stock-app:v1 .
