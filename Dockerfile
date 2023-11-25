@@ -8,9 +8,6 @@ ENV PATH="VIRTUAL_ENV/bin:$PATH"
 WORKDIR /app
 ADD . /app
 
-# Update
-RUN pip install -r requirements.txt
-
 # Install dependencies
 RUN pip install -r requirements.txt
 

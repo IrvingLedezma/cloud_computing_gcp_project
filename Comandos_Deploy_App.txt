@@ -1,2 +1,10 @@
-mv Dockerfile.txt Dockerfile
 docker build -t gcr.io/${PROJECT_ID}/stock-app:v1 .
+docker images
+gcloud auth configure-docker
+docker push gcr.io/${PROJECT_ID}/stock-app:v1
+gcloud config set project $PROJECT_ID
+gcloud config set compute/zone us-east1-b
+gcloud container clusters create stock-cluster --num-nodes=2
+kubectl create deployment stock-app --image=gcr.io/${PROJECT_ID}/stock-app:v1
+kubectl expose deployment stock-app --type=LoadBalancer --port 80 --target-port 8080
+http://34.73.214.154:8080
