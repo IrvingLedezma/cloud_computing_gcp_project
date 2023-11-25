@@ -17,7 +17,6 @@ from google.cloud import bigquery
 
 """
 
-
 # Crea un DataFrame de pandas con valores dummy
 data = {
     'avg_Open': [100.0],
@@ -56,10 +55,12 @@ sql_query = f"""
         STDDEV_POP(Close_WALMEXMX) AS std_Close,
         STDDEV_POP(Volume_WALMEXMX) AS std_Volume
     FROM
-        `test-proyecto-final-406120.stock_dataset.stock_data_model_table`
+        `test-proyecto-final-406120.stock_dataset.stock_data_table`
     WHERE
         FECHA BETWEEN '{fecha_30_dias_atras}' AND '{fecha_actual}'
 """
+
+client = bigquery.Client()
 
 # Ejecuta la consulta
 query_job = client.query(sql_query)
@@ -72,8 +73,7 @@ results_info = query_job.to_dataframe()
 sql_query = """
     SELECT *
     FROM `test-proyecto-final-406120.stock_dataset.stock_data_model_table`
-    ORDER BY FECHA DESC
-    LIMIT 1
+    ORDER BY FECHA ASC
 """
 
 # Ejecuta la consulta
