@@ -13,8 +13,6 @@ from datetime import datetime, timedelta
 import pickle
 from google.cloud import bigquery
 
-
-
 """
 
 # Crea un DataFrame de pandas con valores dummy
@@ -35,7 +33,6 @@ results_info = pd.DataFrame(data)
 results_modelo = pd.read_csv('df_acum.csv')
 
 """
-
 
 # Calcular la fecha actual y la fecha hace 30 días
 fecha_actual = datetime.now().strftime('%Y-%m-%d')
@@ -83,6 +80,8 @@ query_job = client.query(sql_query)
 results_modelo = query_job.to_dataframe()
 
 
+# Cargar el modelo
+
 nombre_archivo_modelo = 'modelo_logistico_produccion.pkl'
 
 with open(nombre_archivo_modelo, 'rb') as archivo_modelo:
@@ -112,6 +111,11 @@ y_test2 = results_modelo.iloc[index_train:]['Target']
 acc_train = modelo_cargado.score(X_train,y_train)
 acc_test = modelo_cargado.score(X_test,y_test)
 acc_test2 = modelo_cargado.score(X_test2,y_test2)
+
+
+probabilidad_act = modelo_cargado.predict_proba(results_modelo.iloc[-1][list_columns_model].values.reshape(1,-1))[0,1]
+fecha_act = results_modelo.iloc[-1]["FECHA"]
+
 
 
 app = Flask(__name__)
@@ -145,8 +149,6 @@ def home():
          }
     ]    
     
-    fecha_actual = datetime.now().strftime('%Y-%m-%d')
-
 
     datos_tabla_2 = [
         {'Metrica': 'Accuracy', 
@@ -159,7 +161,7 @@ def home():
     return render_template("home.html", 
                            datos_tabla=datos_tabla,
                            datos_tabla_2=datos_tabla_2, 
-                           fecha_actual=fecha_actual)
+                           fecha_actual=fecha_act)
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -192,12 +194,11 @@ def predict():
     ]    
 
 
-    prediction = .0934
     return render_template('home.html',
-                           pred=f'La probabilidad de crecimiento al 2023-11-02 es: {round(prediction,2)}'.format(prediction),
+                           pred=f'La probabilidad de crecimiento al {fecha_act} es: {round(probabilidad_act,3)}',
                            datos_tabla=datos_tabla,
                            datos_tabla_2=datos_tabla_2, 
-                           fecha_actual=fecha_actual)
+                           fecha_actual=fecha_act)
 
 
 

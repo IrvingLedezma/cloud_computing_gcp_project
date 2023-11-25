@@ -194,6 +194,8 @@ def get_data():
     
     
     df_acum['Target'] = np.vectorize(get_target)(df_acum['Close_WALMEXMX'] - df_acum['Close_WALMEXMX_L1'])
+    df_acum.iloc[-1]['Target'] = 0 
+    
     
     
     """=========================================================================================
@@ -253,6 +255,7 @@ def get_data():
     
     print(f"data sucessfully uploadesd to {bucket}")
     
+
 
 
 with DAG('Stock_data',

@@ -7,7 +7,6 @@ Created on Mon Nov 20 12:45:38 2023
 
 from google.cloud import bigquery
 
-
 # Calcular la fecha actual y la fecha hace 30 días
 fecha_actual = datetime.now().strftime('%Y-%m-%d')
 fecha_30_dias_atras = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')
@@ -55,5 +54,3 @@ results_modelo = query_job.to_dataframe()
 
 print(results_info)
 print(results_modelo)
-
-
