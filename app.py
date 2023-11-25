@@ -9,9 +9,11 @@ import config
 from flask import Flask,request, url_for, redirect, render_template, jsonify
 import pandas as pd
 import numpy as np
-from datetime import datetime
+from datetime import datetime, timedelta
 import pickle
 from google.cloud import bigquery
+
+
 
 """
 
@@ -54,7 +56,7 @@ sql_query = f"""
         STDDEV_POP(Close_WALMEXMX) AS std_Close,
         STDDEV_POP(Volume_WALMEXMX) AS std_Volume
     FROM
-        `test-proyecto-final.stock_dataset.stock_data_table`
+        `test-proyecto-final-406120.stock_dataset.stock_data_model_table`
     WHERE
         FECHA BETWEEN '{fecha_30_dias_atras}' AND '{fecha_actual}'
 """
@@ -69,7 +71,7 @@ results_info = query_job.to_dataframe()
 # Construye la consulta SQL para la información de que se utiliza en el modelo
 sql_query = """
     SELECT *
-    FROM `test-proyecto-final.stock_dataset.stock_data_table`
+    FROM `test-proyecto-final-406120.stock_dataset.stock_data_model_table`
     ORDER BY FECHA DESC
     LIMIT 1
 """
