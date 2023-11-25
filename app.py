@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 import pickle
 from google.cloud import bigquery
 
+
 """
 
 # Crea un DataFrame de pandas con valores dummy
