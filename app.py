@@ -12,6 +12,17 @@ import numpy as np
 from datetime import datetime, timedelta
 import pickle
 from google.cloud import bigquery
+from google.oauth2 import service_account
+
+
+# Ruta al archivo JSON de credenciales de servicio
+ruta_credenciales = "test-proyecto-final-406120-87e1ab52c4d4.json"
+
+# Configura las credenciales
+credenciales = service_account.Credentials.from_service_account_file(
+    ruta_credenciales,
+    scopes=["https://www.googleapis.com/auth/cloud-platform"],
+)
 
 
 """
@@ -58,7 +69,7 @@ sql_query = f"""
         FECHA BETWEEN '{fecha_30_dias_atras}' AND '{fecha_actual}'
 """
 
-client = bigquery.Client()
+client = bigquery.Client(credentials=credenciales)
 
 # Ejecuta la consulta
 query_job = client.query(sql_query)

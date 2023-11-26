@@ -1,3 +1,5 @@
+export GOOGLE_APPLICATION_CREDENTIALS="/home/g0263100/cloud_computing_gcp_project/test-proyecto-final-406120-87e1ab52c4d4.json"
+export PROJECT_ID=test-proyecto-final-406120
 docker build -t gcr.io/${PROJECT_ID}/stock-app:v1 .
 docker images
 gcloud auth configure-docker
@@ -7,4 +9,17 @@ gcloud config set compute/zone us-east1-b
 gcloud container clusters create stock-cluster --num-nodes=2
 kubectl create deployment stock-app --image=gcr.io/${PROJECT_ID}/stock-app:v1
 kubectl expose deployment stock-app --type=LoadBalancer --port 80 --target-port 8080
-http://34.73.214.154:8080
+kubectl get service
+http://34.74.6.195:8080
+
+
+kubectl delete service stock-app
+kubectl delete deployment stock-app
+gcloud container clusters delete stock-cluster
+gcloud container images delete gcr.io/${PROJECT_ID}/stock-app:v1 --force-delete-tags --quiet
+docker rmi gcr.io/${PROJECT_ID}/stock-app:v1
+
+
+
+
+
