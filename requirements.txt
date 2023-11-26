@@ -6,3 +6,4 @@ gunicorn==21.2.0
 certifi==2023.7.22
 itsdangerous==2.0.1
 pandas==1.5.3
+google-cloud-bigquery==3.13.0
