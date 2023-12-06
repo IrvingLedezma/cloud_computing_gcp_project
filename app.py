@@ -102,7 +102,7 @@ with open(nombre_archivo_modelo, 'rb') as archivo_modelo:
 
 # Definición de indices para cálculo de métricas
 
-sindex_train = 411
+index_train = 411
 index_tot_train = 457
 
 list_columns_model = list(modelo_cargado.feature_names_in_)
