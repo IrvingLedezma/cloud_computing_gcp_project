@@ -16,7 +16,7 @@ from google.oauth2 import service_account
 
 
 # Ruta al archivo JSON de credenciales de servicio
-ruta_credenciales = "test-proyecto-final-406120-87e1ab52c4d4.json"
+ruta_credenciales = "proyecto-computo-nube-2023-5742b8321962.json"
 
 # Configura las credenciales
 credenciales = service_account.Credentials.from_service_account_file(
@@ -64,7 +64,7 @@ sql_query = f"""
         STDDEV_POP(Close_WALMEXMX) AS std_Close,
         STDDEV_POP(Volume_WALMEXMX) AS std_Volume
     FROM
-        `test-proyecto-final-406120.stock_dataset.stock_data_table`
+        `proyecto-computo-nube-2023.stock_dataset.stock_data_table`
     WHERE
         FECHA BETWEEN '{fecha_30_dias_atras}' AND '{fecha_actual}'
 """
@@ -81,7 +81,7 @@ results_info = query_job.to_dataframe()
 # Construye la consulta SQL para la información de que se utiliza en el modelo
 sql_query = """
     SELECT *
-    FROM `test-proyecto-final-406120.stock_dataset.stock_data_model_table`
+    FROM `proyecto-computo-nube-2023.stock_dataset.stock_data_model_table`
     ORDER BY FECHA ASC
 """
 
@@ -102,7 +102,7 @@ with open(nombre_archivo_modelo, 'rb') as archivo_modelo:
 
 # Definición de indices para cálculo de métricas
 
-index_train = 411
+sindex_train = 411
 index_tot_train = 457
 
 list_columns_model = list(modelo_cargado.feature_names_in_)

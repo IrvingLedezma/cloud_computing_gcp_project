@@ -18,7 +18,7 @@ import random2 as random
 import numpy as np
 
 
-PROJECT_ID="test-proyecto-final-406120"
+PROJECT_ID="proyecto-computo-nube-2023"
 STAGING_DATASET = "stock_dataset"
 LOCATION = "us-central1"
 
@@ -36,9 +36,10 @@ default_args = {
 
 # Inicio de sesión
 
+
 storage_client = storage.Client()
 
-nombre_bucket = 'us-central1-demo-environmen-24f1181f-bucket'
+nombre_bucket = 'us-central1-demo-environmen-e13b4980-bucket'
 bucket = storage_client.bucket(nombre_bucket)
 map_scaler_nm = 'map_scaler_produccion.pkl'
 df_corre_nm = 'df_correlacion.csv'
